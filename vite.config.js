@@ -1,16 +1,17 @@
-import { defineConfig } from 'vite';
-import inject from 'vite-plugin-html-inject';
+import { defineConfig } from "vite";
+import inject from "vite-plugin-html-inject";
 
 export default defineConfig({
+    base: "/focus-frame/", // 👈 BUNU EKLE
     plugins: [
         inject()
     ],
-    root: './',
+    root: "./",
     build: {
-        outDir: 'dist',
+        outDir: "dist",
         rollupOptions: {
             input: {
-                main: 'index.html',
+                main: "index.html",
             },
         },
     },
