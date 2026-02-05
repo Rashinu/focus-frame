@@ -1,0 +1,163 @@
+/* Tablet/Mobile Menu Styles */
+
+/* 1. Default (Desktop >= 1280px) - EVERYTHING HIDDEN */
+.menu-toggle,
+.mobile-menu-sidebar,
+.mobile-menu-backdrop,
+.menu-content-wrapper,
+.mobile-nav {
+    display: none !important;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 2. Tablet & Mobile (< 1280px) */
+@media (max-width: 1279px) {
+    /* Changed from 1280px to exclude 1280 as requested */
+
+    /* Show Toggle Button */
+    .menu-toggle {
+        display: flex !important;
+        visibility: visible;
+        pointer-events: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1045;
+        margin-left: 24px;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-primary);
+        transition: all 0.3s ease;
+    }
+
+    /* Hide Desktop Nav items */
+    .desktop-nav,
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Sidebar Structure (Hidden by default, shown via class) */
+    .mobile-menu-sidebar {
+        display: flex !important;
+        /* Enable layout */
+
+        /* HIDDEN STATE: Use visibility: hidden to prevent scrollbar/interaction when closed */
+        visibility: hidden;
+        pointer-events: none;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 320px;
+        max-width: 80%;
+
+        background-image: url('../images/podium.jpg');
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.4s;
+        /* Delay visibility toggle until transform finishes */
+        z-index: 2010;
+        flex-direction: column;
+        padding: 32px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .mobile-menu-sidebar.is-open {
+        transform: translateX(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0s;
+        /* Immediate visibility on open */
+    }
+
+    /* Backdrop */
+    .mobile-menu-backdrop {
+        display: block !important;
+        visibility: hidden;
+        /* Hidden state */
+        pointer-events: none;
+
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2000;
+    }
+
+    .mobile-menu-backdrop.is-open {
+        visibility: visible;
+        pointer-events: auto;
+        opacity: 1;
+    }
+
+    /* Overlay for readability */
+    .mobile-menu-sidebar::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+        z-index: 1;
+    }
+
+    /* Content */
+    .menu-content-wrapper {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .menu-close {
+        align-self: flex-end;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 32px;
+        line-height: 1;
+        cursor: pointer;
+        margin-bottom: 48px;
+        padding: 8px;
+    }
+
+    /* Restore visibility for children */
+    .menu-content-wrapper,
+    .mobile-nav {
+        display: flex !important;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .mobile-nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .mobile-nav a {
+        font-size: 24px;
+        font-weight: 500;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .mobile-nav a:hover {
+        color: var(--accent-color);
+    }
+}

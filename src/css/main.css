@@ -1,0 +1,917 @@
+:root {
+    --bg-color: #111111;
+    /* Dark background */
+    --card-bg: #1c1c1c;
+    /* Slightly lighter for cards */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --accent-color: #D6B598;
+    /* Beige/Gold from UI Kit */
+    --input-bg: transparent;
+    --input-border: #333333;
+
+    /* Fonts */
+    --font-primary: 'Manrope', sans-serif;
+    --font-accent: 'Playfair Display', serif;
+
+    --container-width: 1200px;
+    --sp-sm: 8px;
+    --sp-md: 16px;
+    --sp-lg: 32px;
+    --sp-xl: 64px;
+    --sp-xxl: 128px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--sp-md);
+}
+
+/* Typography Utility Classes */
+.heading-xl {
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+}
+
+.heading-lg {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.heading-md {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.text-accent {
+    color: var(--accent-color);
+}
+
+.serif-italic {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.mb-sm {
+    margin-bottom: 16px;
+}
+
+.mb-md {
+    margin-bottom: 32px;
+}
+
+.mb-lg {
+    margin-bottom: 48px;
+}
+
+/* Button & UI Kit Components */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-primary {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 1px solid #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: var(--card-bg);
+    /* Darker background */
+    border-color: var(--card-bg);
+    color: #BEA69E;
+    /* Beige color from feedback */
+}
+
+.input-field {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    padding: 16px;
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field::placeholder {
+    color: #555;
+}
+
+.input-field:focus {
+    border-color: var(--accent-color);
+}
+
+/* Header */
+.site-header {
+    padding: 24px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 32px;
+}
+
+.main-nav a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.main-nav a:hover {
+    color: #BEA69E;
+    /* Beige color from feedback */
+}
+
+/* Hero Section */
+.hero-section {
+    padding: var(--sp-md) 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* Fix horizontal overflow specific to section */
+}
+
+.hero-container {
+    background-color: var(--card-bg);
+    border-radius: 40px;
+    padding: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    /* Ensure centering */
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    min-height: 600px;
+    position: relative;
+}
+
+.hero-content {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 400px;
+    margin-bottom: 60px;
+    line-height: 1.6;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.students-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar-group {
+    display: flex;
+}
+
+.avatar-group .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #333;
+    border: 2px solid var(--card-bg);
+    margin-left: -12px;
+    background-size: cover;
+    background-color: #555;
+    /* Placeholder color */
+}
+
+.avatar-group .avatar:first-child {
+    margin-left: 0;
+}
+
+.students-preview span {
+    font-size: 13px;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+.reviews-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.star-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #000;
+}
+
+.reviews-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews-text .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.reviews-text .count {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    /* background-color: #222; Removed prompt background */
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Ensure image doesn't leak out */
+}
+
+/* Marquee Banner */
+.marquee-banner {
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.marquee-banner p {
+    font-size: clamp(24px, 4vw, 56px);
+    /* Responsive larger font */
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* About Section */
+.about-section {
+    padding: 100px 0;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.camera-pill-shape {
+    width: 100%;
+    height: 350px;
+    background-color: var(--accent-color);
+    border-radius: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    overflow: hidden;
+    /* Ensures image stays within pill shape */
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(-30deg) scale(1.4);
+    /* Tilt and zoom to match screenshot */
+    transition: transform 0.5s ease;
+}
+
+.camera-pill-shape:hover .about-img {
+    transform: rotate(0deg) scale(1.1);
+    /* Interactive hover effect */
+}
+
+.about-text-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    /* Adjusted for better look */
+    column-gap: 32px;
+    row-gap: 32px;
+}
+
+.about-text-grid p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* First paragraph (intro) spans full width */
+.about-text-grid p:first-child {
+    grid-column: span 2;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+
+/* Courses Section */
+.courses-section {
+    padding-bottom: 100px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+}
+
+.section-desc {
+    max-width: 400px;
+    color: var(--text-secondary);
+    text-align: right;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.course-card {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.course-num {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+}
+
+.arrow-icon {
+    font-size: 16px;
+    width: 32px;
+    height: 32px;
+    background: #2a2a2a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.3s;
+}
+
+.course-card:hover .arrow-icon {
+    background: #fff;
+    color: #000;
+    transform: rotate(45deg);
+}
+
+.course-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: auto;
+}
+
+.course-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 40px;
+    line-height: 1.6;
+}
+
+/* Mentors Section */
+.mentors-section {
+    padding-bottom: 100px;
+}
+
+.mentors-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.mentor-item {
+    text-align: center;
+}
+
+.mentor-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 24px;
+    object-fit: cover;
+    /* Replaces background-size: cover */
+    border: 3px solid transparent;
+    background-color: #E0E0E0;
+    /* Added background color for transparent PNGs */
+}
+
+.mentor-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.mentor-exp {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Signup Section */
+.signup-section {
+    padding-bottom: 100px;
+}
+
+.signup-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.signup-desc {
+    color: var(--text-secondary);
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.message-field {
+    min-height: 140px;
+    resize: none;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.signup-image {
+    position: relative;
+    height: 600px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.camera-lens-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Lens Pill (Left - Beige) */
+.lens-pill {
+    position: absolute;
+    /* Layout properties from Rectangle 5 */
+    width: 190px;
+    height: 288px;
+    top: 252px;
+    /* Left isn't specified in 2nd text but visually it's left of the black one. 
+       In previous prompt it was Left:18px. The screenshot shows it aligned. 
+       I will set left: 0 or keep previous relative left to match composition. */
+    left: 18px;
+
+    background-color: #BEA69E;
+    border-radius: 1000px;
+    /* Radius from feedback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+}
+
+/* Camera Pill (Right - Black) */
+.camera-main {
+    position: absolute;
+    /* Layout properties from Rectangle 4 */
+    width: 350px;
+    height: 540px;
+    left: 210px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: #1D1D1D;
+    border-radius: 1000px;
+    /* Radius from feedback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Image styling */
+.img-placeholder-small {
+    /* Lens image */
+    width: 90%;
+    /* Reduced for breathing room */
+    height: auto;
+    object-fit: contain;
+    transform: rotate(-90deg);
+    /* Rotated to lie horizontally */
+    /* mix-blend-mode: multiply; Removed to restore original colors/vibrancy */
+    filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.4));
+    /* Added depth */
+}
+
+.img-placeholder-large {
+    /* Camera Product */
+    width: 90%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+    /* Added depth */
+}
+
+/* Removed old style blocks, handled above */
+
+/* Reviews Section */
+.reviews-section {
+    padding-bottom: 120px;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.review-card {
+    background-color: var(--card-bg);
+    padding: 32px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Added subtle border */
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.reviewer-info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.reviewer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #E0E0E0;
+    /* Light gray background for avatars */
+}
+
+.reviewer-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.reviewer-role {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.star-rating {
+    color: var(--text-secondary);
+    /* In screenshot star color matches text sometimes or is discrete. 
+                                     UI Kit says Beige/Gold? Let's use accent but dim. */
+    color: #666;
+}
+
+/* Wait, UI kit shows filled stars are probably light or accent color. 
+   Screenshot shows stars as light grey/white or gold? 
+   Let's stick to simple text color for now or gold if I had the variable. 
+   Ah, I removed text-accent from it in previous step? No.
+*/
+.star-rating {
+    display: flex;
+    /* Ensure stars are inline properly */
+    gap: 2px;
+}
+
+.star-rating .star {
+    color: #444;
+    /* Empty star color */
+    font-size: 18px;
+}
+
+.star-rating .star.filled {
+    color: var(--accent-color);
+    /* Filled star color */
+}
+
+.review-text {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+/* Footer structure */
+.site-footer {
+    padding: 80px 0 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.footer-links li {
+    margin-bottom: 16px;
+}
+
+.footer-links a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+.brand-col p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    max-width: 200px;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-go {
+    background: #333;
+    color: #fff;
+    border: none;
+    width: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-go:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 32px;
+}
+
+.legal-links a {
+    margin-right: 24px;
+}
+
+.copyright p {
+    line-height: 1.4;
+    text-align: right;
+}
+
+/* Responsive Rules */
+@media (max-width: 1280px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 40px;
+    }
+
+    .mentors-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Explicitly keep 4 */
+}
+
+@media (max-width: 767px) {
+
+    /* Single Column for all main sections */
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: auto;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .signup-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mentors 2 Columns */
+    .mentors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        row-gap: 32px;
+    }
+
+    /* Hero Image Stacking & Adjustments */
+    .hero-image-wrapper {
+        height: 400px;
+        order: -1;
+        /* If user wants image top? Or keep bottom? Default is bottom. Let's keep bottom for now or standard stacking. */
+    }
+
+    /* User said 'Hero image stacked vertically'. Usually implies block layout. */
+    .hero-content {
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .hero-desc {
+        margin: 0 auto 40px;
+    }
+
+    /* About Image Adjustment for mobile */
+    .camera-pill-shape {
+        height: 280px;
+    }
+
+    /* Signup Image Adjustments for mobile to prevent overlap */
+    .signup-image {
+        height: 500px;
+        justify-content: center;
+        transform: scale(0.9);
+    }
+
+    .camera-main {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 280px;
+        height: 440px;
+    }
+
+    .lens-pill {
+        left: 50%;
+        width: 150px;
+        height: 240px;
+        top: 50%;
+        transform: translate(-140%, -10%);
+    }
+
+    /* Headings */
+    .heading-xl {
+        font-size: 40px;
+    }
+
+    .heading-lg {
+        font-size: 32px;
+    }
+}
