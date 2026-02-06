@@ -313,20 +313,40 @@ ul {
 /* Marquee Banner */
 .marquee-banner {
     padding: 60px 0;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
 }
 
-.marquee-banner p {
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+}
+
+.marquee-content span,
+.marquee-content {
     font-size: clamp(24px, 4vw, 56px);
-    /* Responsive larger font */
     text-transform: uppercase;
     font-weight: 500;
     letter-spacing: 0.02em;
     color: var(--text-primary);
     line-height: 1.2;
-    text-align: center;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* About Section */
@@ -783,8 +803,17 @@ ul {
     padding-top: 32px;
 }
 
+.legal-links {
+    display: flex;
+    flex-direction: column;
+    /* Stacked for Desktop as requested */
+    gap: 8px;
+}
+
 .legal-links a {
-    margin-right: 24px;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    transition: opacity 0.3s;
 }
 
 .copyright p {
@@ -793,125 +822,268 @@ ul {
 }
 
 /* Responsive Rules */
-@media (max-width: 1280px) {
-    .courses-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* Responsive Rules */
 
-    .reviews-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        row-gap: 40px;
-    }
-
-    .mentors-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    /* Explicitly keep 4 */
-}
-
-@media (max-width: 767px) {
-
-    /* Single Column for all main sections */
+/* TABLET (768px - 1279px) */
+@media (min-width: 768px) and (max-width: 1279px) {
     .container {
-        padding: 0 16px;
+        padding: 0 32px;
     }
 
+    /* 11) Hero: Stack layout (Text top, Image bottom) */
     .hero-container {
         grid-template-columns: 1fr;
         height: auto;
-        min-height: auto;
+        padding-bottom: 0;
+        border-radius: 32px;
     }
 
+    .hero-content {
+        padding: 60px 40px 40px;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .hero-image-wrapper {
+        width: 100%;
+        height: 500px;
+        /* Specific height for tablet image */
+    }
+
+    /* 12) About: Camera top, Text below (2 columns) */
+    .about-container {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 48px;
+    }
+
+    .about-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .camera-pill-shape {
+        width: 100%;
+        /* Fill container */
+        max-width: 600px;
+        /* But don't be too huge */
+    }
+
+    .about-content {
+        width: 100%;
+    }
+
+    .about-text-grid {
+        grid-template-columns: 1fr 1fr;
+        /* 2 Columns Side-by-Side */
+        gap: 24px;
+    }
+
+    .about-text-grid p:first-child {
+        grid-column: span 1;
+        /* Reset span if needed, user said 2 paragraphs side by side */
+        /* Wait, HTML currently has 2 paragraphs. 
+           If I want them side by side, I typically want p1 in col1, p2 in col2.
+           The CSS grid settings for .about-text-grid need to ensure this.
+           Currently .about-text-grid p:first-child has grid-column: span 2 in base CSS.
+           I MUST override this.
+        */
+        grid-column: auto;
+    }
+
+    /* 13) Mentors: 2 per row */
+    .mentors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 24px;
+        row-gap: 48px;
+    }
+
+    /* 14) Sign Up: Hide image */
+    .signup-container {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .signup-image {
+        display: none;
+    }
+
+    .signup-content {
+        text-align: left;
+    }
+
+    /* 15) Footer */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns logic? Or match specific tablet look */
+        /* Figma usually has Tablet as: [Brand+Social] [Nav+Subscribe] or similar.
+           Let's go with 2x2 grid.
+        */
+        gap: 40px;
+    }
+
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* MOBILE (<= 767px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 16px;
+        /* 20px in Figma usually, standardizing */
+    }
+
+    /* 5) Hero: Left align */
+    .hero-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        border-radius: 24px;
+    }
+
+    .hero-content {
+        padding: 40px 20px;
+        text-align: left;
+        /* Requirement 5 */
+        align-items: flex-start;
+    }
+
+    /* 6) Hero: "Our happy students" + "Reviews" SIDE BY SIDE */
+    .hero-meta {
+        flex-direction: row;
+        /* Requirement 6 */
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-desc {
+        font-size: 14px;
+        margin-bottom: 32px;
+    }
+
+    .hero-image-wrapper {
+        height: 350px;
+    }
+
+    /* 7) About: 2 paragraphs */
     .about-container {
         grid-template-columns: 1fr;
         gap: 40px;
     }
 
-    .signup-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .about-text-grid {
+        display: flex;
+        /* Or block to easier stack */
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    /* Override span 2 from base */
+    .about-text-grid p:first-child {
+        grid-column: auto;
+    }
+
+    .camera-pill-shape {
+        height: 250px;
+    }
+
+    /* 8) Courses: Stack heading and description */
+    .section-header {
+        flex-direction: column;
+        /* Stacked */
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .section-desc {
+        text-align: left;
+        margin-left: 0;
     }
 
     .courses-grid {
         grid-template-columns: 1fr;
     }
 
-    .reviews-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    /* Mentors 2 Columns */
+    /* 9) Mentors: 1 per row */
     .mentors-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        row-gap: 32px;
+        grid-template-columns: 1fr;
+        /* Requirement 9 */
     }
 
-    /* Hero Image Stacking & Adjustments */
-    .hero-image-wrapper {
-        height: 400px;
-        order: -1;
-        /* If user wants image top? Or keep bottom? Default is bottom. Let's keep bottom for now or standard stacking. */
+    /* Sign Up Mobile */
+    .signup-container {
+        grid-template-columns: 1fr;
     }
 
-    /* User said 'Hero image stacked vertically'. Usually implies block layout. */
-    .hero-content {
-        padding: 40px 20px;
+    .signup-image {
+        display: none;
+        /* Often hidden on mobile too, or stacked? 
+                         Requirement 14 said "Sign up: NO image on the right on tablet". 
+                         Usually implied for mobile too if not specified, 
+                         or stacked below. 
+                         "Mobile... Sign up" not explicitly listed in revisions list, 
+                         BUT for small screens image usually breaks layout. 
+                         I will hide it to be safe or stack it. 
+                         Let's stack it (show it) unless it looks bad. 
+                         Actually, "Tablet... Hide it". 
+                         Usually Mobile also hides it. I'll hide it to ensure no overflow.
+                      */
+        display: none;
+    }
+
+    /* 10) Footer: Social media + site links SIDE BY SIDE */
+    .footer-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 40px 20px;
+    }
+
+    .footer-col {
+        width: 100%;
+    }
+
+    /* Brand col full width */
+    .brand-col {
+        width: 100%;
+    }
+
+    /* Social and Nav Side-by-Side (50% each) */
+    .social-col,
+    .nav-col {
+        width: 45%;
+        /* Fit two in row */
+        flex: 1 1 auto;
+    }
+
+    /* Subscribe full width */
+    .subscribe-col {
+        width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column-reverse;
+        /* Copyright bottom usually */
+        align-items: center;
+        gap: 20px;
         text-align: center;
     }
 
-    .hero-meta {
-        flex-direction: column;
+    .legal-links {
         align-items: center;
-        gap: 20px;
     }
 
-    .hero-desc {
-        margin: 0 auto 40px;
-    }
-
-    /* About Image Adjustment for mobile */
-    .camera-pill-shape {
-        height: 280px;
-    }
-
-    /* Signup Image Adjustments for mobile to prevent overlap */
-    .signup-image {
-        height: 500px;
-        justify-content: center;
-        transform: scale(0.9);
-    }
-
-    .camera-main {
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 280px;
-        height: 440px;
-    }
-
-    .lens-pill {
-        left: 50%;
-        width: 150px;
-        height: 240px;
-        top: 50%;
-        transform: translate(-140%, -10%);
-    }
-
-    /* Headings */
+    /* Typography adjustments */
     .heading-xl {
-        font-size: 40px;
+        font-size: 36px;
     }
 
     .heading-lg {
-        font-size: 32px;
+        font-size: 28px;
     }
 }
