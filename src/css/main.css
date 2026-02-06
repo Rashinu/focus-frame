@@ -38,6 +38,8 @@ body {
     font-family: var(--font-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
 }
 
 img {
@@ -1085,5 +1087,10 @@ ul {
 
     .heading-lg {
         font-size: 28px;
+    }
+
+    /* Fixed Reviews Grid for Mobile - Single Column */
+    .reviews-grid {
+        grid-template-columns: 1fr;
     }
 }
